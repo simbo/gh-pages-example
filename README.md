@@ -10,7 +10,7 @@ gh-pages-example
 - [Goals of this project](#goals-of-this-project)
 - [Setup](#setup)
   - [Preconditions](#preconditions)
-  - [Initialize git](#initialize-git)
+  - [Setup git and github](#setup-git-and-github)
 
 <!-- /TOC -->
 
@@ -40,20 +40,22 @@ something like this:
 ./
 ├─ dist/          # generated contents
 ├─ src/           # sources and templates
-├─ .gitignore     # dist folder is ignored
+├─ .gitignore     # `dist/` folder is ignored
 ├─ package.json   # project metadata and tasks
 └─ README.md      # project information
 ```
 
 
-### Initialize git
-
-If not done already, initialize git, add github as remote and commit everything
-except the `dist/` folder, which is added to `.gitignore`.
+### Setup git and github
 
 ``` sh
+# initialize git
 git init
+
+# add github as remote
 git remote add origin git@github.com:simbo/gh-pages-example.git
+
+# commit everything except the `dist/` folder, which is added to `.gitignore`
 git add src .gitignore package.json README.md
 git commit -m "initial commit"
 ```
