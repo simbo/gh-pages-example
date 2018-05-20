@@ -122,7 +122,7 @@ git commit -m "update content"
 git push origin gh-pages
 ```
 
-As simply as it seems, this manual method is error-prone as two repos are more
+As simple as it seems, this manual method is error-prone as two repos are more
 complex to manage manually.
 
 
@@ -172,8 +172,8 @@ deploy:
 
 Notice how `local-dir` points to our generated contents folder `dist`.
 
-Every pushed commit to master should now automatically trigger a build and push
-updates to gh-pages which will be published at the respective URL.
+Every pushed commit to `master` should now automatically trigger a build and push
+updates to `gh-pages` which will be published at the respective URL.
 
 You're done.
 
