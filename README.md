@@ -8,11 +8,10 @@ gh-pages-example
 <!-- TOC -->
 
 - [Goals of this project](#goals-of-this-project)
-- [Setup](#setup)
-  - [Preconditions](#preconditions)
-  - [Configure repository and GitHub](#configure-repository-and-github)
-  - [Managing updates](#managing-updates)
-    - […manually](#manually)
+- [Preconditions](#preconditions)
+- [Configure repository and GitHub](#configure-repository-and-github)
+- [Managing updates](#managing-updates)
+  - […manually](#manually)
 
 <!-- /TOC -->
 
@@ -30,10 +29,7 @@ use and understand - preferably by just pushing updated sources to master and
 letting travis build and deploy contents.
 
 
-## Setup
-
-
-### Preconditions
+## Preconditions
 
 You have just created your new website project and your project root looks
 something like this:
@@ -48,7 +44,7 @@ something like this:
 ```
 
 
-### Configure repository and GitHub
+## Configure repository and GitHub
 
 ``` sh
 # initialize git
@@ -88,10 +84,10 @@ published at an URL like this: [simbo.github.io/gh-pages-example](https://simbo.
 ![GitHub Pages Settings Example](./gh-pages-settings.png)
 
 
-### Managing updates
+## Managing updates
 
 
-#### …manually
+### …manually
 
 You could simply clone the branch `gh-pages` to the `dist` folder within your
 `master` branch.
