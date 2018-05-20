@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- '8.11.*'
+env:
+  global:
+    secure: PDS4pIbrZhQaBMAHiLAiHSTwhsiKHrQyn+oeZABKy6afQStYDU+NeX6pjPWdEkN/6Z3n8uKUJk+tvJeX+nWaNjS6eLvCKmW7KEwUKN0BjLD8I54zbwNez9JV5foU/gh598NJaHLdNEM5LrfWOvxjdP34dHOcLksV+bb1E/qnoNbrxNFcNTzMVJ/t7HOfNXbXcC9OBqq7VPIgpY7wqLt7Ut+CtudH7UthieQ23kBm1hO803As8uFlNg94EyTlilBiKBd7dV3RtwzFqvnWIkDPqe/jwL/1pNvvxuEA4aEu1W5FObgVWiKMsZijug5oAgoGAcTGcxQsD/1uBIT82pACpEWnZXi8MtRQCkHYgTnzhag2d1vRCgBaKOmtnji6fXI8ceRHLKmyBE7fEKWOl4Ovp+DGHGJJEMllXDzdxYkLeM9oKekh/iAcylM0soCi+HdUG6hYFMShmFs/06evfbwBKrJlXy03a6/y6V72SURa8g4nxVhDzXALnE7JZN9r5+9uBoeM6qc1sFuaiFITCxl5LYUf/k2ZgQf+Hbuw978ZueM0W5VGhNOQS0/cZMP7gtBAtEKhdoHWlLYtxP4xjOfj0I6nFGud57YprkdTlYXjwiANBD+trIrgECQiTo8J9aOszJzChzgID970kf9xodcH/+iI1vgIcB5W0Tr7ilRJHZ4=
+after_script:
+- npm run build
+deploy:
+  provider: pages
+  github-token: $GITHUB_TOKEN
+  local-dir: dist
+  on:
+    branch: master
+  skip-cleanup: true
+  keep-history: true
