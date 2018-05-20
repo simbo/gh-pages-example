@@ -1,0 +1,13 @@
+{
+  "name": "gh-pages-example",
+  "version": "0.1.0",
+  "description": "Example project for creating and maintaining github pages",
+  "author": "Simon Lepel <simbo@simbo.de> (http://simbo.de)",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf dist/* && mkdir -p dist && cp -Rf src/* dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "src/index.html"
+}
