@@ -7,27 +7,40 @@ gh-pages-example
 
 <!-- TOC -->
 
-- [Goals of this project](#goals-of-this-project)
+- [About this project](#about-this-project)
+- [TL;DR](#tldr)
 - [Assumed preconditions](#assumed-preconditions)
 - [Configure repository and GitHub](#configure-repository-and-github)
 - [Managing updates](#managing-updates)
   - […manually (not recommended)](#manually-not-recommended)
-  - […using Travis CI](#using-travis-ci)
+  - […automatically using Travis CI](#automatically-using-travis-ci)
 
 <!-- /TOC -->
 
 ---
 
 
-## Goals of this project
+## About this project
 
-Find and document a clean and convenient strategy to create and maintain a
-github pages project where sources and generated contents are separate
-branches.
+This example project demonstrates a clean and convenient strategy to create and
+maintain a GitHub pages project.
 
-Publishing updated contents should be handled in a way that is easy to
-use and understand - preferably by just pushing updated sources to master and
-letting travis build and deploy contents.
+Generated contents should be kept separated from sources and you should not have
+to push them manually, as you already pushed the source changes.
+
+Although changes should be build and published automatically on updates.
+
+There should also be no unusual commandline workflow like submodules or subtree
+involved.
+
+
+## TL;DR
+
+  - add generated contents to `.gitignore` in your `master` branch
+
+  - create an empty/orphan branch `gh-pages` for generated contents
+
+  - setup Travis CI to build from `master` and push build to `gh-pages`
 
 
 ## Assumed preconditions
@@ -112,7 +125,7 @@ As simply as it seems, this manual method is error-prone as two repos are more
 complex to manage manually.
 
 
-### …using Travis CI
+### …automatically using Travis CI
 
 If not done already, register at [Travis CI](https://travis-ci.org/) and install
 the [travis client](https://github.com/travis-ci/travis.rb).
@@ -131,3 +144,33 @@ After generating the token, add it encrypted to your travis config:
 ``` sh
 travis encrypt GITHUB_TOKEN=your-personal-access-token --add
 ```
+
+Now add deploy settings to your travis config using the [GitHub Pages provider](https://docs.travis-ci.com/user/deployment/pages/).
+
+Your `.travis.yml` should now look something like this:
+
+``` yaml
+language: node_js
+node_js:
+- '8.11.*'
+env:
+  global:
+    secure: PDS4pIbrZhQaBMAHiLAiHSTwhsiKH...
+before_deploy:
+- npm run build
+deploy:
+  provider: pages
+  github-token: $GITHUB_TOKEN
+  local-dir: dist
+  on:
+    branch: master
+  skip-cleanup: true
+  keep-history: true
+```
+
+Every pushed commit to master should now automatically trigger a build and push
+updates to gh-pages which will be published under the respective URL.
+
+You're done.
+
+**Happy automated publishing!**
