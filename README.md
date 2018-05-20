@@ -93,7 +93,8 @@ git checkout master
 Go to repository settings on GitHub and check the *GitHub Pages* section.
 
 Your branch `gh-pages` should be used as source and your content should then be
-published at an URL like this: [simbo.github.io/gh-pages-example](https://simbo.github.io/gh-pages-example/)
+published at an URL like this:
+[simbo.github.io/gh-pages-example](https://simbo.github.io/gh-pages-example/)
 
 ![GitHub Pages Settings Example](./gh-pages-settings.png)
 
@@ -145,7 +146,8 @@ After generating the token, add it encrypted to your travis config:
 travis encrypt GITHUB_TOKEN=your-personal-access-token --add
 ```
 
-Now add deploy settings to your travis config using the [GitHub Pages provider](https://docs.travis-ci.com/user/deployment/pages/).
+Now add deploy settings to your travis config using the
+[GitHub Pages provider](https://docs.travis-ci.com/user/deployment/pages/).
 
 Your `.travis.yml` should now look something like this:
 
@@ -169,7 +171,7 @@ deploy:
 ```
 
 Every pushed commit to master should now automatically trigger a build and push
-updates to gh-pages which will be published under the respective URL.
+updates to gh-pages which will be published at the respective URL.
 
 You're done.
 
