@@ -8,7 +8,7 @@ gh-pages-example
 <!-- TOC -->
 
 - [Goals of this project](#goals-of-this-project)
-- [Preconditions](#preconditions)
+- [Assumed preconditions](#assumed-preconditions)
 - [Configure repository and GitHub](#configure-repository-and-github)
 - [Managing updates](#managing-updates)
   - […manually](#manually)
@@ -29,7 +29,7 @@ use and understand - preferably by just pushing updated sources to master and
 letting travis build and deploy contents.
 
 
-## Preconditions
+## Assumed preconditions
 
 You have just created your new website project and your project root looks
 something like this:
@@ -53,7 +53,7 @@ git init
 # go to github, create the remote repository and add it locally
 git remote add origin git@github.com:simbo/gh-pages-example.git
 
-# commit everything except the `dist` folder, which is added to `.gitignore`
+# commit everything (except the `dist` folder, which is added to `.gitignore`)
 git add src .gitignore package.json README.md
 git commit -m "initial commit"
 
