@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "rm -rf dist/* && mkdir -p dist && cp -Rf src/* dist/",
+    "build": "mkdir -p dist && cp -Rf src/* dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "src/index.html"
