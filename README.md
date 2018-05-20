@@ -10,7 +10,7 @@ gh-pages-example
 - [Goals of this project](#goals-of-this-project)
 - [Setup](#setup)
   - [Preconditions](#preconditions)
-  - [Setup git and github](#setup-git-and-github)
+  - [Configure repository and GitHub](#configure-repository-and-github)
 
 <!-- /TOC -->
 
@@ -46,16 +46,41 @@ something like this:
 ```
 
 
-### Setup git and github
+### Configure repository and GitHub
 
 ``` sh
 # initialize git
 git init
 
-# add github as remote
+# go to github, create the remote repository and add it locally
 git remote add origin git@github.com:simbo/gh-pages-example.git
 
 # commit everything except the `dist/` folder, which is added to `.gitignore`
 git add src .gitignore package.json README.md
 git commit -m "initial commit"
+
+# push master to github
+git push origin master
+
+# create a new orphan branch `gh-pages` and clear the working tree
+git checkout --orphan gh-pages
+git rm -rf .
+
+# create an `index.html` and add it to git
+echo "Hello World" > index.html
+git add index.html
+git commit -m "initial content"
+
+# push `gh-pages` branch to github
+git push origin gh-pages
+
+# switch back to master branch
+git checkout master
 ```
+
+Go to repository settings on GitHub and check the *GitHub Pages* section.
+
+Your branch `gh-pages` should be used as source and your content should then be
+published at an URL like this: [simbo.github.io/gh-pages-example](https://simbo.github.io/gh-pages-example/)
+
+![GitHub Pages Settings Example](./gh-pages-settings.png)
