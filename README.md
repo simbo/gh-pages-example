@@ -79,7 +79,7 @@ Both offer the same features, while there are some important differences:
     can only be published from `master` branch
 
 
-*NOTICE:*
+#### *NOTICE*
 
   > This documentation focuses on *project pages* that are published from a
   > `gh-pages` branch, as this is imho the most usual and convenient usecase.
@@ -98,12 +98,12 @@ something like this:
 ./
 ├─ dist/          # generated pages
 ├─ src/           # sources and templates
-├─ .gitignore     # `dist` folder is ignored
+├─ .gitignore     # `dist/` folder is ignored
 ├─ package.json   # project metadata and tasks
 └─ README.md      # project information
 ```
 
-The `dist/` folder is added to `.gitignore` as we do not want to commit
+The `dist/` folder should be added to `.gitignore` as we do not want to commit
 generated files to our source branches.
 
 Everything else should be committed to your git repository's `master` branch and
@@ -160,7 +160,6 @@ Travis offers the [GitHub Pages deployment provider](https://docs.travis-ci.com/
 which fullfills all our needs automagically.
 
 With deployment options, your final `.travis.yml` should look like this:
-
 
 ``` yaml
 language: node_js
@@ -273,7 +272,7 @@ at first).
   - `index.html` vs. `README.md`
 
     There will be a conflict if you have both of these in your `gh-pages` root,
-    as GitHub seems indecisive which one to use per default…
+    as GitHub seems indecisive which one of them to use per default…
 
 
 ## Feedback
