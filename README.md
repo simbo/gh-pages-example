@@ -79,8 +79,10 @@ Both offer the same features, while there are some important differences:
     can only be published from `master` branch
 
 
-This documentation focuses on *project pages* that are published from a
-`gh-pages` branch, as this is imho the most usual and convenient usecase.
+*NOTICE:*
+
+  > This documentation focuses on *project pages* that are published from a
+  > `gh-pages` branch, as this is imho the most usual and convenient usecase.
 
 I suppose that, after reading this documentation, you will be able to change
 configuration settings according to your needs to publish your *user pages*
