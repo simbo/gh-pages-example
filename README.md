@@ -92,7 +92,7 @@ or whatever you want to do.
 ## Assumed Preconditions
 
 You have just created your new website project and your project root looks
-something like this:
+somehow like this:
 
 ```
 ./
@@ -128,10 +128,10 @@ done manually.
 #### Preparations
 
 
-##### Enable Travis CI
+##### Enable Travis Support
 
-If not done already, login/register at [Travis CI](https://travis-ci.org/) using
-your GitHub account and install the [travis client](https://github.com/travis-ci/travis.rb)
+If not done already, register at [Travis CI](https://travis-ci.org/) using your
+GitHub account and install the [travis client](https://github.com/travis-ci/travis.rb)
 on your machine.
 
 Enable Travis support for your project by running `travis init` in your project
@@ -143,7 +143,7 @@ Afterwards, there should be a fresh generated `.travis.yml` in your project root
 ##### GitHub Personal Access Token
 
 Go to GitHub and get a [personal access token](https://github.com/settings/tokens),
-so Travis will be enabled to push changes back to GitHub. Give it a useful
+so Travis will be authorized to push changes back to GitHub. Give it a useful
 description like `my-project travis deploy` and select `public_repo` as access
 scope.
 
