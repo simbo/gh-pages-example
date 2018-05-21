@@ -6,22 +6,15 @@ gh-pages-example
 
 ---
 
-<!-- TOC -->
+<!-- TOC depthTo:3 -->
 
 - [TL;DR](#tldr)
 - [About this project](#about-this-project)
   - [Types of GitHub Pages](#types-of-github-pages)
 - [Assumed Preconditions](#assumed-preconditions)
 - [Deployment Strategy](#deployment-strategy)
-  - [Deployment using Travis CI](#deployment-using-travis-ci)
-    - [Preparations](#preparations)
-    - [`.travis.yml`](#travisyml)
-    - [Triggering Deploys](#triggering-deploys)
-  - [Manual Deployment](#manual-deployment)
-    - [Preparations](#preparations-1)
-      - [Create `gh-pages` branch](#create-gh-pages-branch)
-      - [Clone `gh-pages` to `dist/`](#clone-gh-pages-to-dist)
-    - [Deployment Steps](#deployment-steps)
+  - [Deploying using Travis CI](#deploying-using-travis-ci)
+  - [Deploying manually](#deploying-manually)
 - [Notes](#notes)
 - [Feedback](#feedback)
 
@@ -37,7 +30,7 @@ gh-pages-example
 
   - enable Travis CI using [pages deployment](https://docs.travis-ci.com/user/deployment/pages/)
     to build from `master` branch and push only generated files to `gh-pages`
-    branch (see final [`.travis.yml`](#travisyml))
+    branch (see final [`.travis.yml`](#deployment-config))
 
       * [GitHub personal access token](https://github.com/settings/tokens) with
         access scope `public_repo` is required for pushing from Travis CI
@@ -127,10 +120,13 @@ This is easy to achieve using a CI/CD service like *Travis CI* but can also be
 done manually.
 
 
-### Deployment using Travis CI
+### Deploying using Travis CI
 
 
 #### Preparations
+
+
+##### Enable Travis CI
 
 If not done already, login/register at [Travis CI](https://travis-ci.org/) using
 your GitHub account and install the [travis client](https://github.com/travis-ci/travis.rb)
@@ -141,8 +137,11 @@ root. When asked for main language, choose what fits your needs (i.e. `node`).
 
 Afterwards, there should be a fresh generated `.travis.yml` in your project root.
 
+
+##### GitHub Personal Access Token
+
 Go to GitHub and get a [personal access token](https://github.com/settings/tokens),
-so Travis will be enabled to push changes back to GitHub. Give it a useful 
+so Travis will be enabled to push changes back to GitHub. Give it a useful
 description like `my-project travis deploy` and select `public_repo` as access
 scope.
 
@@ -152,13 +151,14 @@ After generating the token, encrypt it and add it to your Travis config:
 travis encrypt GITHUB_TOKEN=your-personal-access-token --add
 ```
 
+
+##### Deployment Config
+
 Travis offers the [GitHub Pages deployment provider](https://docs.travis-ci.com/user/deployment/pages/),
 which fullfills all our needs automagically.
 
 With deployment options, your final `.travis.yml` should look like this:
 
-
-#### `.travis.yml`
 
 ``` yaml
 language: node_js
@@ -189,7 +189,7 @@ the first deploy.
 Afterwards, you can enable *GitHub Pages* support in your repository settings on
 GitHub. Make sure to set the build source to `gh-pages` branch.
 
-You're done.
+You're done!
 
 
 #### Triggering Deploys
@@ -198,7 +198,7 @@ Every pushed commit to `master` should now automatically trigger a build and
 push updates to `gh-pages`, which will be published at the respective URL.
 
 
-### Manual Deployment
+### Deploying manually
 
   > I do not recommend to use manual deployment as a common strategy. Although
   > it seems simple, it's prone to human error. Nevertheless, it's good to know…
@@ -262,7 +262,7 @@ git push origin gh-pages
 
 When using manual deployment like this, make sure that your build script doesn't
 touch the repository inside of `dist/`. You may want to build a little script for
-the deployment steps (or better [use Travis CI for deployment](#deployment-using-travis-ci)
+the deployment steps (or better [use Travis CI for deployment](#deploying-using-travis-ci)
 at first).
 
 
