@@ -54,7 +54,7 @@ over to the [official documentation](https://pages.github.com/) first.
 
 ### Types of GitHub Pages
 
-There are two types of GitHub pages: *project pages* and *user or organization
+There are two types of GitHub Pages: *project pages* and *user or organization
 pages*.
 
 Both offer the same features, while there are some important differences:
