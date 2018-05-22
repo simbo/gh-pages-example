@@ -1,24 +1,23 @@
 gh-pages-example
 ================
 
-  > An example project for creating and deploying *GitHub Pages* projects using
-  > custom build tools and Travis CI.
+  > An example project and tutorial for creating and deploying *GitHub Pages*
+  > projects using custom build tools and *Travis CI*.
 
 ---
 
-<!-- TOC depthTo:3 -->
+### *Demo Website at [simbo.github.io/gh-pages-example](https://simbo.github.io/gh-pages-example)*
 
-- [TL;DR](#tldr)
+---
+
 - [About this project](#about-this-project)
   - [Types of GitHub Pages](#types-of-github-pages)
-- [Assumed Preconditions](#assumed-preconditions)
-- [Deployment Strategy](#deployment-strategy)
+- [Assumed preconditions](#assumed-preconditions)
+- [Deployment strategy](#deployment-strategy)
   - [Deploying using Travis CI](#deploying-using-travis-ci)
   - [Deploying manually](#deploying-manually)
-- [Notes](#notes)
+- [Good to know](#good-to-know)
 - [Feedback](#feedback)
-
-<!-- /TOC -->
 
 ---
 
@@ -28,12 +27,13 @@ gh-pages-example
   - push your pages project sources to `master` branch while generated files are
     added to `.gitignore`
 
-  - enable Travis CI using [pages deployment](https://docs.travis-ci.com/user/deployment/pages/)
-    to build from `master` branch and push only generated files to `gh-pages`
+  - enable Travis CI using
+    [pages deployment](https://docs.travis-ci.com/user/deployment/pages/) to
+    build from `master` branch and push only generated files to `gh-pages`
     branch (see final [`.travis.yml`](#deployment-config))
 
-      * [GitHub personal access token](https://github.com/settings/tokens) with
-        access scope `public_repo` is required for pushing from Travis CI
+  - [GitHub personal access token](https://github.com/settings/tokens) with
+    access scope `public_repo` is required for pushing from Travis CI
 
 
 ## About this project
@@ -58,43 +58,37 @@ pages*.
 Both offer the same features, while there are some important differences:
 
 
-  - **Project Pages**
-
-    …for creating pages for your project.
-
-    URL format: *your-username.github.io/your-project*
-
+  - *Project Pages* (i.e. `your-username.github.io/your-project`)  
+    …for creating pages for your project.  
     can be published from:
       - `gh-pages` branch
       - `master` branch
       - `master` branch `docs/` folder
 
 
-  - **User/Organization Pages**
-
-    …for creating your personal user pages or organization pages.
-
-    URL format: *your-username.github.io*
-
-    can only be published from `master` branch
+  - *User/Organization Pages* (i.e. `your-username.github.io`)  
+    …for creating your personal user pages or organization pages.  
+    can *only* be published from `master` branch
 
 
-#### *NOTICE*
+#### *NOTICE:*
 
-  > This documentation focuses on *project pages* that are published from a
-  > `gh-pages` branch, as this is imho the most usual and convenient usecase.
+  > This document focuses on *project pages* that are published from a `gh-pages`
+  > branch, as this is *imho* the most usual and convenient usecase.
 
-I suppose that, after reading this documentation, you will be able to change
-configuration settings according to your needs to publish your *user pages*
-or whatever you want to do.
+</div>
+
+I suppose that, after reading this tutorial, you will be able to change
+configuration settings according to your needs to publish your *user pages* or
+whatever you want to do.
 
 
-## Assumed Preconditions
+## Assumed preconditions
 
 You have just created your new website project and your project root looks
 somehow like this:
 
-```
+``` text
 ./
 ├─ dist/          # generated pages
 ├─ src/           # sources and templates
@@ -110,7 +104,7 @@ Everything else should be committed to your git repository's `master` branch and
 pushed to GitHub.
 
 
-## Deployment Strategy
+## Deployment strategy
 
 The concept is simple:
 
@@ -128,35 +122,37 @@ done manually.
 #### Preparations
 
 
-##### Enable Travis Support
+##### Enable Travis CI support
 
 If not done already, register at [Travis CI](https://travis-ci.org/) using your
-GitHub account and install the [travis client](https://github.com/travis-ci/travis.rb)
-on your machine.
+GitHub account and install the
+[travis client](https://github.com/travis-ci/travis.rb) on your machine.
 
 Enable Travis support for your project by running `travis init` in your project
 root. When asked for main language, choose what fits your needs (i.e. `node`).
 
-Afterwards, there should be a fresh generated `.travis.yml` in your project root.
+Afterwards, there should be a fresh generated `.travis.yml` in your project
+root.
 
 
-##### GitHub Personal Access Token
+##### GitHub personal access token
 
-Go to GitHub and get a [personal access token](https://github.com/settings/tokens),
-so Travis will be authorized to push changes back to GitHub. Give it a useful
-description like `my-project travis deploy` and select `public_repo` as access
-scope.
+Go to GitHub and get a
+[personal access token](https://github.com/settings/tokens), so Travis will be
+authorized to push changes back to GitHub. Give it a useful description like
+`my-project travis deploy` and select `public_repo` as access scope.
 
 After generating the token, encrypt it and add it to your Travis config:
 
-``` sh
+``` bash
 travis encrypt GITHUB_TOKEN=your-personal-access-token --add
 ```
 
 
-##### Deployment Config
+##### Deployment config
 
-Travis offers the [GitHub Pages deployment provider](https://docs.travis-ci.com/user/deployment/pages/),
+Travis offers the
+[GitHub Pages deployment provider](https://docs.travis-ci.com/user/deployment/pages/),
 which fullfills all our needs automagically.
 
 With deployment options, your final `.travis.yml` should look like this:
@@ -187,13 +183,13 @@ deploy:
 If not already existing, the `gh-pages` branch will be automatically created on
 the first deploy.
 
-Afterwards, you can enable *GitHub Pages* support in your repository settings on
-GitHub. Make sure to set the build source to `gh-pages` branch.
+Afterwards, you can enable *GitHub Pages* support in your repository settings
+on GitHub. Make sure to set the build source to `gh-pages` branch.
 
-You're done!
+*You're done!*
 
 
-#### Triggering Deploys
+#### Triggering deploys
 
 Every pushed commit to `master` should now automatically trigger a build and
 push updates to `gh-pages`, which will be published at the respective URL.
@@ -201,15 +197,15 @@ push updates to `gh-pages`, which will be published at the respective URL.
 
 ### Deploying manually
 
-  > I do not recommend to use manual deployment as a common strategy. Although
-  > it seems simple, it's prone to human error. Nevertheless, it's good to know…
+  > I do not recommend to use manual deployment as a common strategy. Although it
+  > seems simple, it's prone to human error. Nevertheless, it's good to know…
 
 We're assuming the same preconditions as for deploying with Travis:
 `dist/` folder is ignored while everything else is pushed to `master` with no
 current changes in the working tree.
 
 
-#### Preparations
+#### Preparations for manual deploy workflow
 
 
 ##### Create `gh-pages` branch
@@ -217,7 +213,7 @@ current changes in the working tree.
 You can skip branch creation if you already have a branch `gh-pages` on your
 GitHub remote.
 
-``` sh
+``` bash
 # create a new orphan branch `gh-pages` and clear its working tree
 git checkout --orphan gh-pages
 git rm -rf .
@@ -235,13 +231,16 @@ git checkout master
 git branch -d gh-pages
 ```
 
-Afterwards, you can enable *GitHub Pages* support in your repository settings on
-GitHub. Make sure to set the build source to `gh-pages` branch.
+Afterwards, you can enable *GitHub Pages* support in your repository settings
+on GitHub. Make sure to set the build source to `gh-pages` branch.
 
 
 ##### Clone `gh-pages` to `dist/`
 
-``` sh
+Now clone the `gh-pages` branch to the `dist/` folder inside of your repo.
+This way your build script will generate files directly into `gh-pages`.
+
+``` bash
 # remove generated dist folder if existing
 rm -rf dist
 # clone only `gh-pages` to `dist/`
@@ -249,9 +248,9 @@ git clone git@github.com:USER/PROJECT.git --branch gh-pages --single-branch dist
 ```
 
 
-#### Deployment Steps
+#### Manual deployment steps
 
-``` sh
+``` bash
 # run build script
 npm run build
 # go to `dist/` to commit and push generated changes
@@ -261,21 +260,22 @@ git commit -m "update content"
 git push origin gh-pages
 ```
 
-When using manual deployment like this, make sure that your build script doesn't
-touch the repository inside of `dist/`. You may want to build a little script for
-the deployment steps (or better [use Travis CI for deployment](#deploying-using-travis-ci)
-at first).
+When using manual deployment like this, make sure that your build script
+doesn't touch the repository inside of `dist/`. You may want to build a little
+script for the deployment steps (or better
+[use Travis CI for deployment](#deploying-using-travis-ci) directly).
 
 
-## Notes
+## Good to know
 
   - `index.html` vs. `README.md`
 
-    There will be a conflict if you have both of these in your `gh-pages` root,
-    as GitHub seems indecisive which one of them to use per default…
+    There will be a conflict if you have both of these in your `gh-pages`
+    root, as GitHub seems indecisive which one of them to use per default…
 
 
 ## Feedback
 
-Feel free to use [project issues](https://github.com/simbo/gh-pages-example/issues)
-for discussion and comments.
+Feel free to use
+[project issues](https://github.com/simbo/gh-pages-example/issues) for
+discussion and comments.
