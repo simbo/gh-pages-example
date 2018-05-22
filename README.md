@@ -6,6 +6,8 @@ gh-pages-example
 
 ---
 
+[![Travis CI build status](https://travis-ci.org/simbo/gh-pages-example.svg?branch=master)](https://travis-ci.org/simbo/gh-pages-example/builds)
+
 ### *Demo Website at [simbo.github.io/gh-pages-example](https://simbo.github.io/gh-pages-example)*
 
 ---
