@@ -1,0 +1,306 @@
+@require 'mixins/shadow'
+@require 'vars'
+
+/**
+ * Article Vars
+ */
+
+$article = {
+  margin: {
+    mobile: 1rem
+    tablet: 2rem
+    desktop: 3rem
+  },
+  padding: {
+    mobile: 1.5rem
+    tablet: 2.66666rem
+    desktop: 2.66666rem
+  },
+  blocks: {
+    spacing: 1.5rem
+  },
+  headlines: {
+    h2: {
+      fontSize: 1.65rem,
+      marginTop: 3rem
+    }
+    h3: {
+      fontSize: 1.25rem,
+      marginTop: 2rem
+    }
+    h4: {
+      fontSize: 1rem,
+      marginTop: 2rem
+    }
+    h5: {
+      fontSize: .85rem,
+      marginTop: 1.5rem
+    }
+    h6: {
+      fontSize: .7rem,
+      marginTop: 1.5rem
+    }
+  }
+}
+
+/**
+ * Article Placeholders
+ */
+
+$articleStrong
+  font-weight: 600
+
+$articleTextShadow
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, .65);
+  @media print
+    text-shadow: none
+
+$articleBlock
+  margin-top: $article.blocks.spacing
+  margin-bottom: $article.blocks.spacing
+
+$articleBlockWrapper
+  > :first-child
+    margin-top: 0
+  > :last-child
+    margin-bottom: 0
+
+$articleBackgroundBlock
+  @extends $articleBlockWrapper, $articleTextShadow
+  padding: $article.blocks.spacing
+
+$articleWideBlock
+  margin-left: - $article.padding.mobile
+  margin-right: - $article.padding.mobile
+  padding-left: $article.padding.mobile
+  padding-right: $article.padding.mobile
+
+  @media screen and (min-width: 768px)
+    margin-left: - $article.padding.tablet
+    margin-right: - $article.padding.tablet
+    padding-left: $article.padding.tablet
+    padding-right: $article.padding.tablet
+
+  @media screen and (min-width: 1025px)
+    margin-left: - $article.padding.desktop
+    margin-right: - $article.padding.desktop
+    padding-left: $article.padding.desktop
+    padding-right: $article.padding.desktop
+
+$articleHeadlines
+  @extends $articleBlock, $articleStrong
+  font-family: $fontFamilies.system
+  line-height: 1.25
+
+$articleCode
+  @extends $articleTextShadow
+  font-size: .85em
+  font-style: normal
+  text-transform: none
+  word-spacing: normal
+  word-break: normal
+  word-wrap: normal
+  tab-size: 2
+  font-family: $fontFamilies.systemMono
+  hyphens: none
+
+/**
+ * Article Styles
+ */
+
+article
+  @extends $articleBlockWrapper
+  position: relative
+  max-width: 780px
+  width: 100%
+  margin: 0 auto
+  padding: $article.padding.mobile
+  background: #fff
+  font-family: $fontFamilies.serif
+  line-height: 1.6
+  color: rgba(0, 0, 0, .85)
+
+  @media screen and (min-width: 768px)
+    margin: $article.margin.tablet auto
+    padding: $article.padding.tablet
+    width: "calc(100% - %s)" % ($article.margin.tablet * 2)
+    border-radius: 2px
+    shadow(2)
+
+  @media screen and (min-width: 1025px)
+    margin: $article.margin.desktop auto
+    padding: $article.padding.desktop
+
+  /**
+   * Links
+   */
+
+  a
+    color: inherit
+
+    &:hover,
+    &:focus
+      color: #0366d6
+
+  /**
+   * Paragraphs
+   */
+
+  p
+    @extends $articleBlock
+
+  /**
+   * Quotes
+   */
+
+  blockquote
+    @extends $articleBlock, $articleBlockWrapper
+
+  /**
+   * Lists
+   */
+
+  ul, ol, dl
+    @extends $articleBlock
+
+  
+  li, dt, dd
+    margin-left: $article.blocks.spacing
+
+  li, dd
+    > ul,
+    > ol,
+    > dl
+        margin-top: 0
+        margin-bottom: 0
+
+  ul > li
+    position: relative
+
+    &::before
+      content: '–'
+      position: absolute
+      top: 0
+      left: ($article.blocks.spacing * -.83333)
+
+  ol
+    list-style-type: decimal
+
+  /**
+   * Headlines
+   */
+
+  for $i in 2..6
+    $h = 'h' + $i
+    {$h}
+      @extends $articleHeadlines
+      font-size: $article.headlines[$h].fontSize
+      &:not(:first-child)
+        margin-top: $article.headlines[$h].marginTop
+    li, dt, dd
+      {$h}
+        &:first-child
+          margin-top: $article.headlines[$h].marginTop
+
+  h1
+    @extends $articleHeadlines
+    margin-top: 0
+    margin-bottom: 2rem
+    font-size: 2.4rem
+
+  h2
+    @extends $articleWideBlock
+    padding-top: $article.headlines.h3.marginTop
+    border-top: 1px solid rgba(0, 0, 0, .06)
+
+  h5, h6
+    color: rgba(0, 0, 0, .55)
+
+  /**
+   * Lines
+   */
+  hr
+    margin: $article.headlines.h3.marginTop (- $article.padding.mobile)
+    border: none
+    border-bottom: 1px solid rgba(0, 0, 0, .06)
+    background: none
+
+    @media screen and (min-width: 768px)
+      margin: $article.headlines.h3.marginTop (- $article.padding.tablet)
+
+    @media screen and (min-width: 1025px)
+      margin: $article.headlines.h3.marginTop (- $article.padding.desktop)
+
+
+  /**
+   * Inline elements
+   */
+
+  strong
+    @extends $articleStrong
+
+  /**
+   * Code
+   */
+
+  pre, code
+    border-radius: 2px
+
+  code
+    @extends $articleCode
+    padding: .2em .4em
+    background: rgba(0, 0, 0, .06)
+
+  pre
+    @extends $articleBlock, $articleBackgroundBlock, $articleWideBlock
+    overflow: auto
+    background: rgba(0, 0, 0, .03)
+    color: #333
+    line-height: 1.2
+    white-space: pre
+
+    code
+      background: none
+      padding: 0
+
+  @require 'prism-theme'
+
+  /**
+   * Intro
+   */
+
+  .intro
+    @extends $articleBlock
+    font-size: 1.2em
+    font-style: italic
+
+  /**
+   * Author Info
+   */
+
+  .author
+    @extends $articleBlock
+    font-size: .85em
+    font-family: $fontFamilies.system
+    color: rgba(0, 0, 0, .55)
+
+    a
+      text-decoration: none
+
+      &:hover
+        text-decoration: underline
+
+  /**
+   * Alerts
+   */
+
+  [class^='alert--'], [class*=' alert--']
+    @extends $articleBlock, $articleBackgroundBlock, $articleWideBlock, $articleTextShadow
+
+  .alert
+    &--info
+      background: alpha(#d1ecf1, .5)
+    &--warning
+      background: alpha(#fff3cd, .5)
+    &--danger
+      background: alpha(#f8d7da, .5)

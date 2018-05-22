@@ -1,13 +1,56 @@
 {
   "name": "gh-pages-example",
   "version": "0.1.0",
-  "description": "Example project for creating and maintaining github pages",
+  "description": "An example project and tutorial for creating and deploying GitHub Pages projects using custom build tools and Travis CI.",
   "author": "Simon Lepel <simbo@simbo.de> (http://simbo.de)",
   "license": "MIT",
   "private": true,
+  "main": "dist/index.html",
   "scripts": {
-    "build": "mkdir -p dist && cp -Rf src/* dist/",
-    "test": "echo \"No tests specified. Skipping.\" && exit 0"
+    "build:dev": "webpack --progress",
+    "build": "NODE_ENV=production yarn run build:dev",
+    "build:ci": "yarn run build --no-progress --bail",
+    "dev": "webpack-dev-server --color",
+    "serve:prod": "NODE_ENV=production yarn run serve",
+    "test": "echo \"No tests specified. Skipping...\" && exit 0",
+    "watch": "yarn run build:dev --watch"
   },
-  "main": "src/index.html"
+  "engines": {
+    "node": ">=8.11.2"
+  },
+  "dependencies": {
+    "css-reset-and-normalize": "^0.3.0",
+    "prismjs": "^1.14.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/runtime": "^7.0.0-beta.46",
+    "@types/node": "^10.0.0",
+    "@types/shortid": "^0.0.29",
+    "autoprefixer": "^8.4.1",
+    "babel-loader": "^8.0.0-beta.2",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "css-mqpacker": "^6.0.2",
+    "css-mqpacker-sort-mediaqueries": "^0.2.2",
+    "cssnano": "^3.10.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-minifier": "^3.5.16",
+    "html-webpack-plugin": "^3.2.0",
+    "marked": "^0.4.0",
+    "postcss-loader": "^2.1.4",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "raw-loader": "^0.5.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "ts-loader": "^4.2.0",
+    "ts-node": "^6.0.1",
+    "typescript": "^2.8.3",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "webpack-dev-server": "^3.1.3"
+  }
 }
