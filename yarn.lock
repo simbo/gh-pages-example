@@ -535,6 +535,10 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@simbo/stylus-mixins@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@simbo/stylus-mixins/-/stylus-mixins-0.1.0.tgz#f27d3c6240149a9caf650627bf4330c6fe9e5684"
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -2327,9 +2331,9 @@ css-parse@1.7.x:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/css-parse/-/css-parse-1.7.0.tgz#321f6cf73782a6ff751111390fc05e2c657d8c9b"
 
-css-reset-and-normalize@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/css-reset-and-normalize/-/css-reset-and-normalize-0.3.0.tgz#82afc3455e6fbe7f547c6f69eed3347fcd45f2b0"
+css-reset-and-normalize@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/css-reset-and-normalize/-/css-reset-and-normalize-1.0.0.tgz#ae29e13aacfc9a55ed719c34a9edaa16e249df7b"
 
 css-select@^1.1.0:
   version "1.2.0"

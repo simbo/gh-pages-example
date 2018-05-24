@@ -1,4 +1,4 @@
-@require 'mixins/shadow'
+@require '~@simbo/stylus-mixins'
 @require 'vars'
 
 /**
@@ -125,7 +125,7 @@ article
     padding: $article.padding.tablet
     width: "calc(100% - %s)" % ($article.margin.tablet * 2)
     border-radius: 2px
-    shadow(2)
+    mdShadow(2)
 
   @media screen and (min-width: 1025px)
     margin: $article.margin.desktop auto
